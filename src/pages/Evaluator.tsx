@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -13,13 +13,32 @@ import {
 import { SelectChangeEvent } from "@mui/material";
 
 import GridItem from "../components/GridItem";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { evaluate } from "../app/modules/evaluatorSlice";
 
 const Evaluator = () => {
   const [operator, setOperator] = useState<string>("+");
+  const [operand, setOperand] = useState<string>("");
+  const [showResult, setShowResult] = useState<boolean>(false);
+  const { value } = useAppSelector((state) => state.evaluator);
+  const [initValue, setInitValue] = useState<string>(value.toString());
+  const dispatch = useAppDispatch();
 
   function handleChangeOperator(event: SelectChangeEvent<unknown>) {
     if (event.target.value && typeof event.target.value === "string")
       setOperator(event.target.value);
+  }
+
+  function handleChangeOperand(
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) {
+    setOperand(event.target.value);
+  }
+
+  function addOperation() {
+    setInitValue(value.toString());
+    dispatch(evaluate({ operand, operator }));
+    setShowResult(true);
   }
 
   return (
@@ -49,7 +68,7 @@ const Evaluator = () => {
               background: "rgb(236, 245, 247)",
             }}
           >
-            3
+            {initValue}
           </Typography>
           <Typography
             variant="button"
@@ -60,7 +79,7 @@ const Evaluator = () => {
               background: "rgb(236, 245, 247)",
             }}
           >
-            4
+            {operand}
           </Typography>
           <Typography
             variant="button"
@@ -71,7 +90,7 @@ const Evaluator = () => {
               background: "rgb(236, 245, 247)",
             }}
           >
-            +
+            {operator}
           </Typography>
         </Box>
         <Box
@@ -105,7 +124,7 @@ const Evaluator = () => {
               padding: "10px 20px",
             }}
           >
-            7
+            {showResult ? value : ""}
           </Typography>
         </Box>
       </Box>
@@ -144,6 +163,8 @@ const Evaluator = () => {
               label="Operand"
               variant="outlined"
               type="number"
+              value={operand}
+              onChange={handleChangeOperand}
               fullWidth
             />
           </GridItem>
@@ -155,6 +176,7 @@ const Evaluator = () => {
               fullWidth
               color="success"
               sx={{ height: "100%" }}
+              onClick={addOperation}
             >
               Add Operation
             </Button>

@@ -4,11 +4,11 @@ import {
   Action,
   PreloadedState,
 } from "@reduxjs/toolkit";
-import quizSlice from "./modules/evaluatorSlice";
+import evaluatorSlice from "./modules/evaluatorSlice";
 
 export const store = configureStore({
   reducer: {
-    quiz: quizSlice,
+    evaluator: evaluatorSlice,
   },
 });
 
@@ -24,7 +24,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 export function setupStore(preloadedState?: PreloadedState<RootState>) {
   return configureStore({
     reducer: {
-      quiz: quizSlice,
+      evaluator: evaluatorSlice,
     },
     preloadedState,
   });

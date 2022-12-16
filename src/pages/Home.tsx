@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Typography, Grid, TextField, Button } from "@mui/material";
 
 import GridItem from "../components/GridItem";
@@ -8,6 +9,7 @@ import { setValue } from "../app/modules/evaluatorSlice";
 const Home = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   function changeInputValue(
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
@@ -18,6 +20,7 @@ const Home = () => {
   function addNumber() {
     if (inputValue) {
       dispatch(setValue(inputValue));
+      navigate("/evaluator", { replace: true });
     }
   }
 
