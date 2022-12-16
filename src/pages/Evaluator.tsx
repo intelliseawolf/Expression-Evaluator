@@ -14,7 +14,7 @@ import { SelectChangeEvent } from "@mui/material";
 
 import GridItem from "../components/GridItem";
 
-const Calculate = () => {
+const Evaluator = () => {
   const [operator, setOperator] = useState<string>("+");
 
   function handleChangeOperator(event: SelectChangeEvent<unknown>) {
@@ -143,6 +143,7 @@ const Calculate = () => {
               id="outlined-basic"
               label="Operand"
               variant="outlined"
+              type="number"
               fullWidth
             />
           </GridItem>
@@ -164,4 +165,4 @@ const Calculate = () => {
   );
 };
 
-export default Calculate;
+export default Evaluator;

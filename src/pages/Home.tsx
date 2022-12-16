@@ -37,6 +37,7 @@ const Home = () => {
           <GridItem>
             <TextField
               id="outlined-basic"
+              type="number"
               label="Please enter a number"
               variant="outlined"
               fullWidth

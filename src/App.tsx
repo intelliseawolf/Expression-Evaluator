@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Calculate from "./pages/Calculate";
+import Evaluator from "./pages/Evaluator";
 
 import "./App.css";
 
@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/calculate" element={<Calculate />} />
+        <Route path="/evaluator" element={<Evaluator />} />
       </Routes>
     </BrowserRouter>
   );
