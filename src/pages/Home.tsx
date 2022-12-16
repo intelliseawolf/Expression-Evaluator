@@ -1,8 +1,26 @@
+import React, { useState } from "react";
 import { Box, Typography, Grid, TextField, Button } from "@mui/material";
 
 import GridItem from "../components/GridItem";
+import { useAppDispatch } from "../app/hooks";
+import { setValue } from "../app/modules/evaluatorSlice";
 
 const Home = () => {
+  const [inputValue, setInputValue] = useState<string>("");
+  const dispatch = useAppDispatch();
+
+  function changeInputValue(
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) {
+    setInputValue(e.currentTarget.value);
+  }
+
+  function addNumber() {
+    if (inputValue) {
+      dispatch(setValue(inputValue));
+    }
+  }
+
   return (
     <Box>
       <Box
@@ -40,6 +58,8 @@ const Home = () => {
               type="number"
               label="Please enter a number"
               variant="outlined"
+              value={inputValue}
+              onChange={changeInputValue}
               fullWidth
             />
           </GridItem>
@@ -51,6 +71,7 @@ const Home = () => {
               fullWidth
               color="success"
               sx={{ height: "100%" }}
+              onClick={addNumber}
             >
               Add Number
             </Button>

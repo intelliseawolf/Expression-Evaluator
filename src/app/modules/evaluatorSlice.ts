@@ -18,6 +18,7 @@ export const evaluateSlice = createSlice({
   initialState,
   reducers: {
     setValue: (state, action: PayloadAction<string>) => {
+      console.log(action.payload, typeof action.payload);
       state.value = Number(action.payload);
     },
     evaluate: (state, action: PayloadAction<Operation>) => {
@@ -48,6 +49,6 @@ export const evaluateSlice = createSlice({
   },
 });
 
-export const { evaluate } = evaluateSlice.actions;
+export const { evaluate, setValue } = evaluateSlice.actions;
 
 export default evaluateSlice.reducer;
