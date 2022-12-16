@@ -1,13 +1,6 @@
-import { Box, Typography, Grid, TextField, Button, Paper } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box, Typography, Grid, TextField, Button } from "@mui/material";
 
-const Item = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import GridItem from "../components/GridItem";
 
 const Home = () => {
   return (
@@ -41,17 +34,17 @@ const Home = () => {
         }}
       >
         <Grid item xs={6}>
-          <Item>
+          <GridItem>
             <TextField
               id="outlined-basic"
               label="Please enter a number"
               variant="outlined"
               fullWidth
             />
-          </Item>
+          </GridItem>
         </Grid>
         <Grid item xs={6}>
-          <Item sx={{ height: "calc(100% - 16px)" }}>
+          <GridItem sx={{ height: "calc(100% - 16px)" }}>
             <Button
               variant="contained"
               fullWidth
@@ -60,7 +53,7 @@ const Home = () => {
             >
               Add Number
             </Button>
-          </Item>
+          </GridItem>
         </Grid>
       </Grid>
     </Box>
